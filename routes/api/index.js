@@ -1,4 +1,11 @@
-const usersRoutes = require('./users');
-const thoughtsRoutes = require('./thoughts');
+// Imports
+const router = require("express").Router();
+const userRoutes = require("./userRoutes");
+const thoughtRoutes = require("./thoughtRoutes");
 
-module.exports = { usersRoutes, thoughtsRoutes };
+// Middleware
+router.use("/users", userRoutes);
+router.use("/thoughts", thoughtRoutes);
+
+// Exports
+module.exports = router;
