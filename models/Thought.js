@@ -1,5 +1,22 @@
 const mongoose = require('mongoose');
 
+const reactionSchema = new mongoose.Schema({
+  reactionId: mongoose.Schema.Types.ObjectId,
+  reactionBody: {
+    type: String,
+    required: true,
+    maxlength: 280,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const thoughtSchema = new mongoose.Schema({
   thoughtText: {
     type: String,
@@ -15,11 +32,7 @@ const thoughtSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  reactions: [
-    {
-      type: reactionSchema, // Define reactionSchema separately
-    },
-  ],
+  reactions: [reactionSchema], // Reference the reactionSchema here
 });
 
 // Create a virtual field for reactionCount
